@@ -16,11 +16,11 @@ class CreatePizzaOrderTable extends Migration
         Schema::create('pizza_order', function (Blueprint $table) {
             $table->unsignedInteger('pizza_id');
             $table->unsignedInteger('order_id');
-            $table->string('size');
-            $table->double('price', 5, 2);
+            $table->unsignedInteger('size_id');
 
-            $table->foreign('pizza_id')->references('id')->on('pizza');
-            $table->foreign('order_id')->references('id')->on('order');
+            $table->foreign('pizza_id')->references('id')->on('pizzas');
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('size_id')->references('id')->on('sizes');
             $table->timestamps();
         });
     }
