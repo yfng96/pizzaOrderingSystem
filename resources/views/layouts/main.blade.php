@@ -61,6 +61,7 @@
         <nav class = "sidenav">
               <a href = "{{ route('admin.home.index') }}">DASHBOARD</a>
               <a href = "{{ route('admin.pizza.index') }}">PIZZA</a>
+              <a href = "{{ route('admin.size.index') }}">SIZE</a>
           </ul>
         </nav>
         <div style="margin-top:50px">

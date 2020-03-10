@@ -17,7 +17,12 @@ class Order extends Model
 
     public function pizzas()
     {
-        return $this->belongsToMany(Pizza::class)->withPivot('size', 'price');
+        return $this->belongsToMany(Pizza::class);
+    }
+
+    public function sizes()
+    {
+        return $this->belongsToMany(Size::class);
     }
 
     /*

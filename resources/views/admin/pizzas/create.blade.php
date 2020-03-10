@@ -10,6 +10,10 @@
             </ul>
         </div>
     @endif
+    
+    <p><a href="{{ route('admin.pizza.index') }}" style="margin:10px">
+        &larr; Back</a>
+    </p>
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -18,8 +22,8 @@
 
         <div class="panel-body">
         {!! Form::model($pizza, [
-            'route' => [admin.pizzas.store],
-            'class' => 'from-horizontal'
+            'route' => ['admin.pizza.store'],
+            'class' => 'from-horizontal',
             'enctype' => 'multipart/form-data'
         ])!!}
 
@@ -46,6 +50,7 @@
                     {!! Form::number('base_price', null, [
                         'id' => 'pizza-base_price',
                         'class' => 'form-control',
+                        'step' => 'any',
                         'maxlength' => 6,
                     ]) !!}
                 </div>
@@ -81,11 +86,8 @@
                   ]) !!}
                 </div>
             </div>
-          {!! Form::close() !!}
+            {!! Form::close() !!}
         </div>
-        <p><a href="{{ route('admin.pizzas.index') }}" class="btn btn-success">
-            &larr; Back</a>
-        </p>
     </div>
 </div>
 @endsection

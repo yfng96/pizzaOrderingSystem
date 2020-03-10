@@ -17,6 +17,7 @@ class CreateSizesTable extends Migration
             $table->increments('id');
             $table->string('name', 30)->index();
             $table->double('rate', 5, 2);
+            $table->timestamps();
         });
     }
 

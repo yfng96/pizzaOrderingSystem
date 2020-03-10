@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pizza extends Model
+class Size extends Model
 {
     protected $fillable = [
         'name',
-        'base_price',
-        'description',
-        'image',
+        'rate',
     ];
 
     public function orders()
@@ -18,8 +16,8 @@ class Pizza extends Model
         return $this->belongsToMany(Order::class);
     }
 
-    public function sizes()
+    public function pizzas()
     {
-        return $this->belongsToMany(Size::class);
+        return $this->belongsToMany(Pizza::class);
     }
 }

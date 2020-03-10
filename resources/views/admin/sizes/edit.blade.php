@@ -1,6 +1,3 @@
-<?php
-  use App\Pizza;
-?>
 @extends('layouts.main')
 @section('content')
 <div class="content" style="padding:20px">
@@ -21,54 +18,41 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="page-title">Pizza</h3>
+            <h3 class="page-title">Size</h3>
         </div>
 
         <div class="panel-body">
-            {!! Form::model($pizza, [
-                'route' => ['admin.pizza.update', $pizza->id],
+            {!! Form::model($size, [
+                'route' => ['admin.size.update', $size->id],
                 'method' => 'put',
                 'class' => 'form-horizontal'
             ]) !!}
 
               <!-- Name -->
               <div class="form-group row">
-                  {!! Form::label('pizza-name', 'Name', [
+                  {!! Form::label('size-name', 'Name', [
                       'class' => 'control-label col-sm-3',
                   ]) !!}
                   <div class="col-sm-9">
                       {!! Form::text('name', null, [
-                          'id' => 'pizza-name',
+                          'id' => 'size-name',
                           'class' => 'form-control',
-                          'maxlength' => 100,
+                          'maxlength' => 30,
                       ]) !!}
                   </div>
               </div>
 
-              <!-- Base Price -->
+              <!-- Rate -->
               <div class="form-group row">
-                  {!! Form::label('pizza-base_price', 'Base Price (RM)', [
+                  {!! Form::label('size-rate', 'Rate', [
                       'class' => 'control-label col-sm-3',
                   ]) !!}
                   <div class="col-sm-9">
-                      {!! Form::number('base_price', null, [
-                          'id' => 'pizza-base_price',
+                      {!! Form::number('rate', null, [
+                          'id' => 'size-rate',
                           'class' => 'form-control',
                           'maxlength' => 6,
                           'step' => 'any'
-                      ]) !!}
-                  </div>
-              </div>
-
-              <!--Description-->
-              <div class="form-group row">
-                  {!! Form::label('pizza-description', 'Description', [
-                      'class' => 'control-label col-sm-3',
-                  ]) !!}
-                  <div class="col-sm-9">
-                      {!! Form::textarea('description', $pizza->description, [
-                          'id' => 'pizza-description',
-                          'class' => 'form-control',
                       ]) !!}
                   </div>
               </div>

@@ -30,3 +30,10 @@ Route::delete('/admin/pizza/{id}','PizzaController@destroy')->name('admin.pizza.
 Route::get('/admin/pizza/{pizza}/upload', 'PizzaController@upload')->name('admin.pizza.upload');
 Route::post('/admin/pizza/{pizza}/save-upload', 'PizzaController@saveUpload')->name('admin.pizza.saveUpload');
 Route::get('admin/pizza/delete/{id}',['as' => 'admin.pizza.delete', 'uses' => 'PizzaController@destroy']);
+
+Route::get('/admin/size/create', 'SizeController@create')->name('admin.size.create');
+Route::post('/admin/size', 'SizeController@store')->name('admin.size.store');
+Route::get('/admin/size', 'SizeController@index')->name('admin.size.index');
+Route::get('/admin/size/{id}/edit', 'SizeController@edit')->name('admin.size.edit');
+Route::put('/admin/size/{id}', 'SizeController@update')->name('admin.size.update');
+Route::get('admin/size/delete/{id}',['as' => 'admin.size.delete', 'uses' => 'SizeController@destroy']);

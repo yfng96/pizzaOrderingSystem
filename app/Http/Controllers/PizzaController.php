@@ -20,8 +20,8 @@ class PizzaController extends Controller
      */
     public function index(Request $request)
     {
-        //$pizzas = Pizza::orderBy('name', 'asc')->get();
-        $pizzas = Pizza::when($request->query('name'), function($query) use ($request) {
+        $pizzas = Pizza::orderBy('created_at', 'desc')
+            ->when($request->query('name'), function($query) use ($request) {
                 return $query->where('name', 'like', '%'.$request->query('name').'%');
             })
             ->when($request->query('description'), function($query) use ($request) {
@@ -66,7 +66,7 @@ class PizzaController extends Controller
   
           //Handle file upload
           if($request->hasFile('image')){
-              $filename = trim($request->input('name'));
+              $filename = $request->input('name');
               $filenameToStore = $filename.'.jpg';
               $path = $request->file('image')->storeAs('public/pizzas', $filenameToStore);
           } else {
@@ -149,14 +149,14 @@ class PizzaController extends Controller
     public function saveUpload(Request $request, $id)
     {
         $this->validate($request, [
-            'photo' => 'nullable|image|mimes:jpg,jpeg|max:2000'
+            'photo' => 'image|mimes:jpg,jpeg|max:2000'
         ]);
 
         $pizza = Pizza::find($id);
 
         //Handle file upload
         if($request->hasFile('image')){
-            $filename = trim($pizza->name);
+            $filename = $pizza->name;
             $filenameToStore = $filename.'.jpg';
             $path = $request->file('image')->storeAs('public/pizzas', $filenameToStore);
         }else {

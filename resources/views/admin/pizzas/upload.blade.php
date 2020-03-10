@@ -23,9 +23,9 @@
 
         <!-- Upload Form -->
         {!! Form::open([
-            'route' => ['admin.pizzas.saveUpload', $pizza->id],
+            'route' => ['admin.pizza.saveUpload', $pizza->id],
             'class' => 'form-horizontal',
-            'enctype' => 'multipart/form-data',
+            'enctype' => 'multipart/form-data'
         ]) !!}
 
             <!--Image-->
@@ -54,7 +54,7 @@
       </div>
     </div>
     <p>
-      <a href="{{ route('admin.pizzas.show', ['id' => $pizza->id]) }}" class="btn btn-success">
+      <a href="{{ route('admin.pizza.show', ['id' => $pizza->id]) }}" class="btn btn-success">
           &larr; Back</a>
     </p>
   </div>

@@ -4,7 +4,7 @@ use App\Pizza;
 
 ?>
 <div class="panel-body">
-    <div align="center" style="background:#ddd; padding:5px; margin:10px">
+    <div align="center">
         <div class="filters">
           {!!Form::open([
               'route'=>['admin.pizza.index'],
@@ -14,6 +14,7 @@ use App\Pizza;
               {!! Form::text('name', null, [
                   'id' => 'pizza-name',
                   'class' => 'form-control',
+                  'style' => "margin:5px",
                   'maxlength' => 100,
                   'placeholder' => 'Search Name',
               ]) !!}
@@ -21,6 +22,7 @@ use App\Pizza;
               {!! Form::text('description', null, [
                   'id' => 'pizza-description',
                   'class' => 'form-control',
+                  'style' => "margin:5px",
                   'maxlength' => 100,
                   'placeholder' => 'Search Description',
               ]) !!}
