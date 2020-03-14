@@ -22,7 +22,7 @@
                             <th class="col-sm-2">No.</th>
                             <th class="col-sm-4">Name</th>
                             <th class="col-sm-4">Rate</th>
-                            <th>Actions</th>
+                            <th colspan=2>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,10 +43,10 @@
                                         </div>
                                     </td>
                                     <td class="table-text">
-                                        <div>
-                                            <a class="btn btn-info" style="margin:5px" href="{{ route('admin.size.edit', $size->id) }}">Edit</a>
-                                            <a class="btn btn-danger" style="margin:5px" href="{{ route('admin.size.delete', $size->id) }}">Delete</a>
-                                        </div>
+                                        <a class="btn btn-info" style="margin:5px" href="{{ route('admin.size.edit', $size->id) }}">Edit</a>
+                                    </td>
+                                    <td class="table-text">
+                                        <a class="btn btn-danger" style="margin:5px" href="{{ route('admin.size.delete', $size->id) }}">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

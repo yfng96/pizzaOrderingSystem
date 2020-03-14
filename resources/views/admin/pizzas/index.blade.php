@@ -19,7 +19,7 @@ use App\Pizza;
                 <a href="{{ route('admin.pizza.create') }}" class="btn btn-success" style="margin:0px 10px 10px">
                     Add new pizza
                 </a>
-                <div class="pull-right" style="margin:0px 10px">{{ $pizzas->links() }}</div-->
+                <div class="pull-right" style="margin:0px 10px">{{ $pizzas->links() }}</div>
             </div>
             
             <div style="background:#ddd;padding:5px;margin:10px">
@@ -31,7 +31,7 @@ use App\Pizza;
                             <th class="col-sm-1">Name</th>
                             <th class="col-sm-2">Base Price (RM)</th>
                             <th>Description</th>
-                            <th class="col-sm-2">Actions</th>
+                            <th class="col-sm-2" colspan=2>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,10 +63,10 @@ use App\Pizza;
                                         </div>
                                     </td>
                                     <td class="table-text">
-                                        <div>
-                                            <a class="btn btn-info" style="margin:5px" href="{{ route('admin.pizza.edit', $pizza->id) }}">Edit</a>
-                                            <a class="btn btn-danger" style="margin:5px" href="{{ route('admin.pizza.delete', $pizza->id) }}">Delete</a>
-                                        </div>
+                                        <a class="btn btn-info" style="margin:5px" href="{{ route('admin.pizza.edit', $pizza->id) }}">Edit</a>
+                                    </td>
+                                    <td class="table-text">
+                                        <a class="btn btn-danger" style="margin:5px" href="{{ route('admin.pizza.delete', $pizza->id) }}">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

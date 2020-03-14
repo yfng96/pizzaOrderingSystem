@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>GSE Mall</title>
+    <title>JomPixxa</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -21,8 +21,8 @@
                 <div class="navbar-header">
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        Pixxa
+                    <a class="navbar-brand" href="{{ url('/') }}" style="font-variant: small-caps">
+                        JomPixxa
                     </a>
                 </div>
 
@@ -60,6 +60,7 @@
         </nav>
         <nav class = "sidenav">
               <a href = "{{ route('admin.home.index') }}">DASHBOARD</a>
+              <a href = "{{ route('admin.order.index') }}">ORDER</a>
               <a href = "{{ route('admin.pizza.index') }}">PIZZA</a>
               <a href = "{{ route('admin.size.index') }}">SIZE</a>
           </ul>

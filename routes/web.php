@@ -37,3 +37,6 @@ Route::get('/admin/size', 'SizeController@index')->name('admin.size.index');
 Route::get('/admin/size/{id}/edit', 'SizeController@edit')->name('admin.size.edit');
 Route::put('/admin/size/{id}', 'SizeController@update')->name('admin.size.update');
 Route::get('admin/size/delete/{id}',['as' => 'admin.size.delete', 'uses' => 'SizeController@destroy']);
+
+Route::get('/admin/order', 'OrderController@index')->name('admin.order.index');
+Route::get('/admin/order/{id}', 'OrderController@show')->name('admin.order.show');
