@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Jom Pixxa</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -14,6 +14,7 @@
         <style>
             html, body {
                 background-color: #fff;
+                background-image: url("/main.jpg");
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -62,6 +63,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .button {
+                background-color: #fff;
+                color: black;
+                height: 40px;
+                width: 70%;
+                border-radius: 25px;
+            }
         </style>
     </head>
     <body>
@@ -69,26 +78,32 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('login') }}" style="color:white" 
+                            onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}" style="color:white">Login</a>
+                        <a href="{{ route('register') }}" style="color:white">Register</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="title m-b-md" style="color:white;font-weight:bold">
+                    Jom Pixxa
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="links button flex-center" style="margin: auto">
+                    <a href= "{{ route('login') }}"  class="btn btn-info" style="padding:10px 20px;font-size:15px">Start Your Order Now</a>
                 </div>
+            </div>
+            <div style="position:absolute;bottom:10px">
+                © Copyright 2019 Jom Pixxa, Kuala Lumpur, Malaysia
             </div>
         </div>
     </body>
