@@ -1,17 +1,8 @@
-<?php
-
-use App\Pizza;
-
-?>
-
 @extends('layouts.main')
 @section('content')
 
 <div class="content">
     <h2 style="padding:20px">ORDER</h2>
-    @if (session('success'))
-        <p class="alert alert-success">{{ session('success') }}</p>
-    @endif
 
     <div class="panel-body">
         
@@ -54,7 +45,7 @@ use App\Pizza;
                                     </td>
                                     <td class="table-text">
                                         <div>
-                                        {{ number_format($order->total_cost, 2) }}
+                                            {{ number_format($order->total_cost, 2) }}
                                         </div>
                                     </td>
                                 </tr>

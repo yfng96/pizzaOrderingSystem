@@ -16,12 +16,12 @@
 </head>
 <body style="background-color:#eeeeee">
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom:0px;top:0;width:100%;position:fixed;">
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom:0px;top:0;width:100%;position:fixed;background-color:#84bab7">
             <div class="container">
                 <div class="navbar-header">
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}" style="font-variant: small-caps">
+                    <a class="navbar-brand" href="{{ url('/') }}" style="font-variant: small-caps; color:black">
                         JomPixxa
                     </a>
                 </div>
@@ -34,16 +34,22 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="{{ route('user.pizza.cart') }}" style="color:black">
+                                Order Cart
+                                <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                            </a>
+                        </li>
                         <!-- Authentication Links -->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                <a href="#" class="dropdown-toggle" style="color:black" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('auth.change_password') }}">
-                                            Change Password
+                                        <a href="{{ route('user.pizza.profile') }}">
+                                            History
                                         </a>
                                     </li>
                                     <li>
@@ -63,16 +69,9 @@
                 </div>
             </div>
         </nav>
-        <nav class = "sidenav">
-              <a href = "{{ route('admin.home.index') }}">DASHBOARD</a>
-              <a href = "{{ route('admin.user.index') }}">USER</a>
-              <a href = "{{ route('admin.order.index') }}">ORDER</a>
-              <a href = "{{ route('admin.pizza.index') }}">PIZZA</a>
-          </ul>
-        </nav>
         <div style="margin-top:50px">
-        @yield('content')
-      </div>
+            @yield('content')
+        </div>
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

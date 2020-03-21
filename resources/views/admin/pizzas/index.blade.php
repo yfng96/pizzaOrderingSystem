@@ -10,11 +10,21 @@ use App\Pizza;
 <div class="content">
     <h2 style="padding:20px">PIZZA</h2>
     @if (session('success'))
-        <p class="alert alert-success">{{ session('success') }}</p>
+        <div class="alert alert-success" style="margin-top: 20px; width:100%">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{ session('success') }}
+        </div>
     @endif
 
+    @if (session('unauthorized'))
+        <div class="alert alert-danger" style="margin-top: 20px; width:100%">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{ session('unauthorized') }}
+        </div>
+    @endif
+
+    
     <div class="panel-body">
-        
             <div>
                 <a href="{{ route('admin.pizza.create') }}" class="btn btn-success" style="margin:0px 10px 10px">
                     Add new pizza
@@ -29,7 +39,7 @@ use App\Pizza;
                         <tr>
                             <th class="col-sm-1">No.</th>
                             <th class="col-sm-1">Name</th>
-                            <th class="col-sm-2">Base Price (RM)</th>
+                            <th class="col-sm-2">Price (RM)</th>
                             <th>Description</th>
                             <th class="col-sm-2" colspan=2>Actions</th>
                         </tr>
@@ -54,7 +64,7 @@ use App\Pizza;
                                     </td>
                                     <td class="table-text">
                                         <div>
-                                        {{ number_format($pizza->base_price, 2) }}
+                                        {{ number_format($pizza->price, 2) }}
                                         </div>
                                     </td>
                                     <td class="table-text">
@@ -78,7 +88,6 @@ use App\Pizza;
                     </tbody>
                 </table>
             </div>
-        
     </div>
 </div>
 

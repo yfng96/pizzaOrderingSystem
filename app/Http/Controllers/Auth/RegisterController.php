@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -27,7 +28,18 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        $role = Auth::user()->name;
+
+        switch ($role) {
+            case 'admin':
+                return '/admin';
+            break;
+            default:
+                return '/home';
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -72,6 +84,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $phone,
             'password' => bcrypt($data['password']),
+            'role' => 'U',
         ]);
     }
 }

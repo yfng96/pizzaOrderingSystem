@@ -1,52 +1,68 @@
+<?php
+use App\Common;
+?>
 @extends('layouts.main')
 @section('content')
 
 <div class="content">
-    <h2 style="padding:20px">SIZE</h2>
+    <h2 style="padding:20px">USER</h2>
     @if (session('success'))
-        <p class="alert alert-success">{{ session('success') }}</p>
+        <div class="alert alert-success" style="margin-top: 20px; width:100%">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{ session('success') }}
+        </div>
     @endif
 
     <div class="panel-body">
         
-            <div>
-                <a href="{{ route('admin.size.create') }}" class="btn btn-success" style="margin:0px 10px 10px">
-                    Add new size
-                </a>
-            </div>
+        <div>
+            <a href="{{ route('admin.user.create') }}" class="btn btn-success" style="margin:0px 10px 10px">
+                Add new user
+            </a>
+            <div class="pull-right" style="margin:0px 10px">{{ $users->links() }}</div>
+        </div>
             
             <div style="background:#ddd;padding:5px;margin:10px">
                 <table class="table-striped content-table">
                     <thead>
                         <tr>
-                            <th class="col-sm-2">No.</th>
-                            <th class="col-sm-4">Name</th>
-                            <th class="col-sm-4">Rate</th>
-                            <th colspan=2>Actions</th>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if(count($sizes) > 0)
-                            @foreach ($sizes as $i => $size)
+                        @if(count($users) > 0)
+                            @foreach ($users as $i => $user)
                                 <tr>
                                     <td class="table-text">
                                         <div>{{ $i+1 }}</div>
                                     </td>
                                     <td class="table-text">
                                         <div>
-                                            {{ $size->name }}
+                                            {{ $user->name }}
                                         </div>
                                     </td>
                                     <td class="table-text">
                                         <div>
-                                        {{ number_format($size->rate, 2) }}
+                                            {{ $user->email }}
                                         </div>
                                     </td>
                                     <td class="table-text">
-                                        <a class="btn btn-info" style="margin:5px" href="{{ route('admin.size.edit', $size->id) }}">Edit</a>
+                                        <div>
+                                            {{ $user->phone }}
+                                        </div>
                                     </td>
                                     <td class="table-text">
-                                        <a class="btn btn-danger" style="margin:5px" href="{{ route('admin.size.delete', $size->id) }}">Delete</a>
+                                        <div>
+                                            {{ Common::$roles[$user->role] }}
+                                        </div>
+                                    </td>
+                                    <td class="table-text">
+                                        <a class="btn btn-info" style="margin:5px" href="{{ route('admin.user.edit', $user->id) }}">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach

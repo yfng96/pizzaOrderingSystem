@@ -1,0 +1,58 @@
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  overflow-x: hidden;
+  background-color: rgb(0, 51, 102);
+}
+
+.sidenav a {
+  display: block;
+  color: #f2f2f2;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.sidenav a:hover {
+  background-color: rgb(0, 102, 153);
+  color: white;
+}
+
+.content {
+  position: static;
+  margin-top: 30px;
+  margin-left: 200px;
+  padding-left: 20px;
+}
+
+.content-table {
+  display: table;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+  border-spacing: 0;
+}
+
+.content-table td, .content-table th {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid grey;
+  padding: 8px;
+}
+
+</style>

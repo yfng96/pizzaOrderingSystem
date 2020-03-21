@@ -6,6 +6,12 @@
         &larr; Back</a>
     </p>
     <div class="panel-body">
+        @if (session('unauthorized'))
+            <div class="alert alert-danger" style="margin-top: 20px; width:100%">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ session('unauthorized') }}
+            </div>
+        @endif
         <div style="background:#F0F8FF; padding:20px; margin:10px">
             <div class="row">
                 <div class="col-md-5 col-sm-5">
@@ -28,8 +34,8 @@
                                 <td>{{ $pizza->name }}</td>
                             </tr>
                             <tr>
-                                <td>Base Price (RM)</td>
-                                <td>{{ $pizza->base_price }}</td>
+                                <td>Price (RM)</td>
+                                <td>{{ $pizza->price }}</td>
                             </tr>
                             <tr>
                                 <td>Description</td>

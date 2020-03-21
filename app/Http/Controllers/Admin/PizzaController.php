@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Pizza;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class PizzaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin');
     }
 
     /**
@@ -33,7 +35,6 @@ class PizzaController extends Controller
             'pizzas' => $pizzas,
             'request' => $request,
         ]);
-
     }
 
     /**
@@ -43,11 +44,15 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        $pizza = new Pizza;
+        if (Gate::allows('isAdmin')) {
+            $pizza = new Pizza;
 
-        return view('admin.pizzas.create', [
-            'pizza' => $pizza
-        ]);
+            return view('admin.pizzas.create', [
+                'pizza' => $pizza
+            ]);
+        } else {
+            return redirect()->route('admin.pizza.index')->with('unauthorized','Unauthorized Action');
+        }
     }
 
     /**
@@ -60,25 +65,25 @@ class PizzaController extends Controller
     {
         $request->validate([
             'name' => 'required|max:100',
-            'base_price' => 'required|numeric|between:0,99.99',
+            'price' => 'required|numeric|between:0,99.99',
             'photo' => 'nullable|image|mimes:jpg,jpeg|max:2000'
-          ]);
-  
-          //Handle file upload
-          if($request->hasFile('image')){
-              $filename = $request->input('name');
-              $filenameToStore = $filename.'.jpg';
-              $path = $request->file('image')->storeAs('public/pizzas', $filenameToStore);
-          } else {
-              $filenameToStore = 'noimage.jpg';
-          }
-  
-          $pizza = new Pizza;
-          $pizza->fill($request->all());
-          $pizza->image = $filenameToStore;
-          $pizza->save();
-  
-          return redirect()->route('admin.pizza.index');
+        ]);
+    
+        //Handle file upload
+        if($request->hasFile('image')){
+            $filename = $request->input('name');
+            $filenameToStore = $filename.'.jpg';
+            $path = $request->file('image')->storeAs('public/pizzas', $filenameToStore);
+        } else {
+            $filenameToStore = 'noimage.jpg';
+        }
+    
+        $pizza = new Pizza;
+        $pizza->fill($request->all());
+        $pizza->image = $filenameToStore;
+        $pizza->save();
+    
+        return redirect()->route('admin.pizza.index');
     }
 
     /**
@@ -105,12 +110,16 @@ class PizzaController extends Controller
      */
     public function edit($id)
     {
-        $pizza = Pizza::find($id);
-        if(!$pizza) throw new ModelNotFoundException;
+        if (Gate::allows('isAdmin')) {
+            $pizza = Pizza::find($id);
+            if(!$pizza) throw new ModelNotFoundException;
 
-        return view('admin.pizzas.edit', [
-            'pizza' => $pizza
-        ]);
+            return view('admin.pizzas.edit', [
+                'pizza' => $pizza
+            ]);
+        } else {
+            return redirect()->route('admin.pizza.index')->with('unauthorized','Unauthorized Action');;
+        }
     }
 
     /**
@@ -124,7 +133,7 @@ class PizzaController extends Controller
     {
         $request->validate([
             'name' => 'required|max:100',
-            'base_price' => 'required|numeric|between:0,99.99',
+            'price' => 'required|numeric|between:0,99.99',
           ]);
   
           $pizza = Pizza::find($id);
@@ -138,12 +147,16 @@ class PizzaController extends Controller
 
     public function upload($id)
     {
-        $pizza = Pizza::find($id);
-        if(!$pizza) throw new ModelNotFoundException;
+        if (Gate::allows('isAdmin')) {
+            $pizza = Pizza::find($id);
+            if(!$pizza) throw new ModelNotFoundException;
 
-        return view('admin.pizzas.upload', [
-            'pizza' => $pizza,
-        ]);
+            return view('admin.pizzas.upload', [
+                'pizza' => $pizza,
+            ]);
+        } else {
+            return redirect()->route('admin.pizza.show', ['id' => $id])->with('unauthorized','Unauthorized Action');;
+        }
     }
 
     public function saveUpload(Request $request, $id)
@@ -176,10 +189,14 @@ class PizzaController extends Controller
      */
     public function destroy($id)
     {
-        $pizza = Pizza::find($id);
-        $pizza->delete();
-  
-          return redirect()->route('admin.pizza.index')
-                          ->with('success','Pizza deleted successfully');
+        if (Gate::allows('isAdmin')) {
+            $pizza = Pizza::find($id);
+            $pizza->delete();
+    
+            return redirect()->route('admin.pizza.index')
+                            ->with('success','Pizza deleted successfully');
+        } else {
+            return redirect()->route('admin.pizza.index')->with('unauthorized','Unauthorized Action');;
+        }
     }
 }

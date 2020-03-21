@@ -1,13 +1,8 @@
-<?php
-
-use App\Size;
-
-?>
 @extends('layouts.main')
 @section('content');
 
 <div class="content">
-    <p style="margin:0px 25px 0px"><a href="{{ route('admin.pizza.index') }}">
+    <p style="margin:0px 25px 0px"><a href="{{ route('admin.order.index') }}">
         &larr; Back</a>
     </p>
     <div class="panel-body">
@@ -43,8 +38,7 @@ use App\Size;
                                 <td>
                                     @foreach ($pizzas as $i => $pizza)
                                         <div>
-                                            {{ $pizza->name }}
-                                            ({{ Size::pluck('name','id')->get($pizza->pivot->size_id) }}) x {{ $pizza->pivot->quantity }}
+                                            {{ $pizza->name }} x {{ $pizza->pivot->quantity }}
                                         </div>
                                     @endforeach
                                 </td>

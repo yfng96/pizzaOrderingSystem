@@ -28,10 +28,13 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        $role = Auth::user()->name;
+        $role = Auth::user()->role;
 
         switch ($role) {
-            case 'admin':
+            case 'A':
+                return '/admin';
+            break;
+            case 'S':
                 return '/admin';
             break;
             default:

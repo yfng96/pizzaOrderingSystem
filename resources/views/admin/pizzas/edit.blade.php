@@ -37,7 +37,7 @@
                       'class' => 'control-label col-sm-3',
                   ]) !!}
                   <div class="col-sm-9">
-                      {!! Form::text('name', null, [
+                      {!! Form::text('name', $pizza->name, [
                           'id' => 'pizza-name',
                           'class' => 'form-control',
                           'maxlength' => 100,
@@ -45,14 +45,14 @@
                   </div>
               </div>
 
-              <!-- Base Price -->
+              <!-- Price -->
               <div class="form-group row">
-                  {!! Form::label('pizza-base_price', 'Base Price (RM)', [
+                  {!! Form::label('pizza-price', 'Price (RM)', [
                       'class' => 'control-label col-sm-3',
                   ]) !!}
                   <div class="col-sm-9">
-                      {!! Form::number('base_price', null, [
-                          'id' => 'pizza-base_price',
+                      {!! Form::number('price', $pizza->price, [
+                          'id' => 'pizza-price',
                           'class' => 'form-control',
                           'maxlength' => 6,
                           'step' => 'any'
