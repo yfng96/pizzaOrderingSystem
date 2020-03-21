@@ -4,6 +4,9 @@ namespace App;
 
 class Cart
 {
+	/*
+		reference: https://www.youtube.com/watch?v=4J939dDUH4M
+	*/
 	public $pizzas = null;
 	public $totalQty = 0;
 	public $totalPrice = 0;

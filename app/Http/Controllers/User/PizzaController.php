@@ -13,6 +13,10 @@ use App\User;
 
 class PizzaController extends Controller
 {
+    /*
+		reference: https://www.youtube.com/watch?v=4J939dDUH4M
+    */
+    
     public function __construct()
     {
         $this->middleware('auth');
