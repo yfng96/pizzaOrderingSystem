@@ -1,8 +1,8 @@
 <?php
 ?>
-@extends('layouts.main')
+@extends('layouts.userMain')
 @section('content')
-<div class="content" style="padding:20px">
+<div class="container" style="padding:20px">
 
   @if (session('success'))
    <p class="alert alert-success">{{ session('success') }}</p>
@@ -24,9 +24,8 @@
     </div>
     <!--Bootstrap Boilerplate...-->
     <div class="panel-body">
-        <!-- New Tenant Form -->
         {!! Form::open([
-            'route' => ['auth.change_password'],
+            'route' => ['user.pizza.change_password'],
             'method' => 'patch',
             'class' => 'form-horizontal'
         ]) !!}
@@ -85,10 +84,11 @@
             <!--Submit Button-->
             <div class="form-group row">
                 <div class="col-sm-offset-3 col-sm-6">
-                  {!! Form::button('Update', [
-                      'type' => 'submit',
-                      'class' => 'btn btn-primary'
-                  ]) !!}
+                    <a href="{{ route('user.pizza.index')}}" class="btn btn-primary">Back</a>
+                    {!! Form::button('Update', [
+                        'type' => 'submit',
+                        'class' => 'btn btn-primary'
+                    ]) !!}
                 </div>
             </div>
 

@@ -42,7 +42,7 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('auth.change_password') }}">
+                                        <a href="{{ route('admin.change_password') }}">
                                             Change Password
                                         </a>
                                     </li>

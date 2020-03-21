@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['middleware' => ['auth', 'admin']], function() {
+Route::group(['middleware' => ['admin']], function() {
     Route::get('/admin', 'Admin\AdminController@index')->name('admin.home.index');
 
     Route::get('/admin/pizza/create', 'Admin\PizzaController@create')->name('admin.pizza.create');
@@ -41,8 +41,8 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
     Route::get('/admin/user/{id}/edit', 'Admin\UserController@edit')->name('admin.user.edit');
     Route::put('/admin/user/{id}', 'Admin\UserController@update')->name('admin.user.update');
 
-    Route::get('/admin/change_password', 'Admin\ChangePasswordController@resetForm')->name('auth.change_password');
-    Route::patch('/admin/change_password', 'Admin\ChangePasswordController@changePassword')->name('auth.change_password');
+    Route::get('/admin/change_password', 'Admin\ChangePasswordController@resetForm')->name('admin.change_password');
+    Route::patch('/admin/change_password', 'Admin\ChangePasswordController@changePassword')->name('admin.change_password');
 });
 
 Route::group(['middleware' => ['auth']], function() {
@@ -54,4 +54,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/clear', 'User\PizzaController@clear')->name('user.pizza.clear');
     Route::post('/home', 'User\PizzaController@store')->name('user.pizza.store');
     Route::get('/profile', 'User\PizzaController@profile')->name('user.pizza.profile');
+    Route::get('/change_password', 'User\ChangePasswordController@resetForm')->name('user.pizza.change_password');
+    Route::patch('/change_password', 'USer\ChangePasswordController@changePassword')->name('user.pizza.change_password');
 });

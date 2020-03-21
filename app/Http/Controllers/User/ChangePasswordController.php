@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -23,13 +23,13 @@ class ChangePasswordController extends Controller
      *
      * @var string $redirectTo
      */
-    protected $redirectTo = '/admin/change_password';
+    protected $redirectTo = '/change_password';
 
      public function resetForm()
      {
          $user = Auth::getUser();
 
-         return view('admin.change_password', compact('user'));
+         return view('user.change_password', compact('user'));
      }
 
      public function changePassword(Request $request)
